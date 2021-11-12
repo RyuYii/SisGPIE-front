@@ -1,0 +1,8 @@
+.tarjeta:hover {
+    background-color:#adb5bd;
+    cursor: pointer;
+  }
+.tarjeta:active {
+background-color: #a4a6a8;
+cursor: pointer;
+}

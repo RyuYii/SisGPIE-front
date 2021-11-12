@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row border-bottom mb-3">
+        <h2>Datos personales</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-6 card">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Nombres {{datos["nombre"]}}</li>
+                <li class="list-group-item">Apellidos {{datos["apellido"]}}</li>
+                <li class="list-group-item">CI {{datos["ci"]}}</li>
+                <li class="list-group-item">Fecha de Nacimiento {{datos["fechaNac"]}}</li>
+            </ul>
+        </div>
+        <div class="col-md-2"></div>
+        <div *ngIf="authenticacionService.getRol()==1" class="col-md-4 card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Actualiza tu cuenta</h5>
+                <p class="card-text">Solicita la actualizacion de tu cuenta para asi poder publicar tus propios proyectos</p>
+                <a (click)="solicitarUsuarioGerencial(templateForm)" class="btn btn-primary">Solicitar</a>
+            </div>
+        </div>
+        <div *ngIf="authenticacionService.getRol()!=1" class="col-md-4 card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Usuario Gerencial</h5>
+                <p class="card-text">Usted puede publicar sus propios proyectos</p>
+                <a routerLink="/formRegistroProy" class="btn btn-primary">Registrar</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button (click)="habilitarForm()" class="btn btn-info">editar info</button>
+
+        <div *ngIf="habilitado" class="card mt-3">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-11">
+                        <div class="h3">
+                            Formulario de edicion
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close" (click)="deshabilitarForm()"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <app-formulario-edicion-datos [datosP]="datos"></app-formulario-edicion-datos>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #templateForm>
+    <form class="col-md-12" (ngSubmit)="realizarSolicitud()" [formGroup]="newProd">
+
+        <div class="modal-body text-center">
+            <p>Escriba el motivo por el cual require la actualizacion de su cuenta</p>
+            <label>motivo</label>
+            <textarea formControlName="motivo" class="form-control" cols="30" rows="2"></textarea>
+
+            <button>agregar</button>
+        </div>
+    </form>
+</ng-template>
