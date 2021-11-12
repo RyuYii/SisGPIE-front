@@ -1,10 +1,14 @@
+const path = require('path');
 const express = require('express');
-const path = require('path')
-
 const app = express();
 
-app.use(express.static('./dist/SisGPIE-front'));
+// Serve static files
+app.use(express.static(__dirname + '/dist/proyect-fronted'));
 
-app.get('/*', (req, res)=> res.sendFile('index.html', {root: 'dist/angular-heroku/'}))
+// Send all requests to index.html
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/proyect-fronted/index.html'));
+});
 
+// default Heroku port
 app.listen(process.env.PORT || 8000);

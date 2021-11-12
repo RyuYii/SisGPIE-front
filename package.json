@@ -8,7 +8,8 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "heroku-postbuild": "ng build --prod"
+        "postinstall": "ng build --prod"
+
     },
     "private": true,
     "dependencies": {
@@ -18,6 +19,7 @@
         "@angular/common": "~10.0.1",
         "@angular/compiler": "~10.0.1",
         "@angular/compiler-cli": "~10.0.2",
+        "@angular-devkit/build-angular": "~0.1000.1",
         "@angular/core": "~10.0.1",
         "@angular/forms": "~10.0.1",
         "@angular/platform-browser": "~10.0.1",
